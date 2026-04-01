@@ -2,13 +2,33 @@ import { useEffect, useRef } from 'react'
 import { getStatusColor } from '../utils/statusColor'
 
 function createMarkerImage(color) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22">
-    <circle cx="11" cy="11" r="8" fill="${color}" stroke="white" stroke-width="2.5"/>
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+    <!-- 그림자 -->
+    <ellipse cx="20" cy="35" rx="14" ry="2.5" fill="rgba(0,0,0,0.15)"/>
+    
+    <!-- 왼쪽 묶은 귀(손잡이) -->
+    <path d="M15 16 C10 8 13 4 16 4 C18 4 19 10 18 14" fill="${color}" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- 오른쪽 묶은 귀(손잡이) -->
+    <path d="M25 16 C30 8 27 4 24 4 C22 4 21 10 22 14" fill="${color}" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- 쓰레기봉투 몸통 (밑으로 갈수록 빵빵해지는 형태) -->
+    <path d="M15 14 Q20 15 25 14 C29 14 35 22 35 29 C35 35 28 36 20 36 C12 36 5 35 5 29 C5 22 11 14 15 14 Z" fill="${color}" stroke="#FFFFFF" stroke-width="2" stroke-linejoin="round"/>
+    
+    <!-- 묶인 주름(매듭) 디테일 -->
+    <path d="M14 15 Q20 18 26 15 L24 17 Q20 20 16 17 Z" fill="rgba(0,0,0,0.15)"/>
+    
+    <!-- 몸통 세로 주름선 (비닐 입체감) -->
+    <path d="M12 21 Q10 26 12 32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path d="M28 21 Q30 26 28 32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+
+    <!-- 종량제 봉투 시그니처 로고 '20L' -->
+    <circle cx="20" cy="26" r="5" fill="rgba(255,255,255,0.2)"/>
+    <text x="20" y="28" font-size="5" font-weight="900" fill="#FFFFFF" text-anchor="middle" font-family="sans-serif">20L</text>
   </svg>`
   return new window.kakao.maps.MarkerImage(
     `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
-    new window.kakao.maps.Size(22, 22),
-    { offset: new window.kakao.maps.Point(11, 11) }
+    new window.kakao.maps.Size(40, 40),
+    { offset: new window.kakao.maps.Point(20, 36) }
   )
 }
 
