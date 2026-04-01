@@ -1,0 +1,240 @@
+[
+  {
+    "piCode": "101",
+    "piName": "3L",
+    "pcdName": "생활용",
+    "liter": 3,
+    "price": 90.0
+  },
+  {
+    "piCode": "102",
+    "piName": "5L",
+    "pcdName": "생활용",
+    "liter": 5,
+    "price": 130.0
+  },
+  {
+    "piCode": "103",
+    "piName": "10L",
+    "pcdName": "생활용",
+    "liter": 10,
+    "price": 250.0
+  },
+  {
+    "piCode": "104",
+    "piName": "20L",
+    "pcdName": "생활용",
+    "liter": 20,
+    "price": 490.0
+  },
+  {
+    "piCode": "105",
+    "piName": "30L",
+    "pcdName": "생활용",
+    "liter": 30,
+    "price": 740.0
+  },
+  {
+    "piCode": "106",
+    "piName": "50L",
+    "pcdName": "생활용",
+    "liter": 50,
+    "price": 1250.0
+  },
+  {
+    "piCode": "107",
+    "piName": "75L",
+    "pcdName": "생활용",
+    "liter": 75,
+    "price": 1880.0
+  },
+  {
+    "piCode": "108",
+    "piName": "100L(7월1일부제작중단)",
+    "pcdName": "생활용",
+    "liter": 100,
+    "price": 2500.0
+  },
+  {
+    "piCode": "201",
+    "piName": "1L",
+    "pcdName": "음식물용",
+    "liter": 1,
+    "price": 100.0
+  },
+  {
+    "piCode": "202",
+    "piName": "2L",
+    "pcdName": "음식물용",
+    "liter": 2,
+    "price": 190.0
+  },
+  {
+    "piCode": "203",
+    "piName": "3L",
+    "pcdName": "음식물용",
+    "liter": 3,
+    "price": 300.0
+  },
+  {
+    "piCode": "204",
+    "piName": "5L",
+    "pcdName": "음식물용",
+    "liter": 5,
+    "price": 500.0
+  },
+  {
+    "piCode": "205",
+    "piName": "10L",
+    "pcdName": "음식물용",
+    "liter": 10,
+    "price": 1000.0
+  },
+  {
+    "piCode": "301",
+    "piName": "50L",
+    "pcdName": "사업자용",
+    "liter": 50,
+    "price": 2000.0
+  },
+  {
+    "piCode": "302",
+    "piName": "75L",
+    "pcdName": "사업자용",
+    "liter": 75,
+    "price": 3000.0
+  },
+  {
+    "piCode": "303",
+    "piName": "100L",
+    "pcdName": "사업자용",
+    "liter": 100,
+    "price": 4000.0
+  },
+  {
+    "piCode": "402",
+    "piName": "10L",
+    "pcdName": "재사용",
+    "liter": 10,
+    "price": 250.0
+  },
+  {
+    "piCode": "401",
+    "piName": "20L",
+    "pcdName": "재사용",
+    "liter": 20,
+    "price": 490.0
+  },
+  {
+    "piCode": "601",
+    "piName": "10L",
+    "pcdName": "특수규격봉투",
+    "liter": 10,
+    "price": 1020.0
+  },
+  {
+    "piCode": "602",
+    "piName": "20L",
+    "pcdName": "특수규격봉투",
+    "liter": 20,
+    "price": 2040.0
+  },
+  {
+    "piCode": "05",
+    "piName": "10LF",
+    "pcdName": "납부필증",
+    "liter": 10,
+    "price": 1400.0
+  },
+  {
+    "piCode": "06",
+    "piName": "25LF",
+    "pcdName": "납부필증",
+    "liter": 25,
+    "price": 3500.0
+  },
+  {
+    "piCode": "07",
+    "piName": "60LF",
+    "pcdName": "납부필증",
+    "liter": 60,
+    "price": 8400.0
+  },
+  {
+    "piCode": "08",
+    "piName": "120LF",
+    "pcdName": "납부필증",
+    "liter": 120,
+    "price": 16800.0
+  },
+  {
+    "piCode": "15",
+    "piName": "코로나10L",
+    "pcdName": "납부필증",
+    "liter": 10,
+    "price": 0.0
+  },
+  {
+    "piCode": "51",
+    "piName": "1000원",
+    "pcdName": "대형폐기물",
+    "liter": 1000,
+    "price": 1000.0
+  },
+  {
+    "piCode": "52",
+    "piName": "2000원",
+    "pcdName": "대형폐기물",
+    "liter": 2000,
+    "price": 2000.0
+  },
+  {
+    "piCode": "53",
+    "piName": "3000원",
+    "pcdName": "대형폐기물",
+    "liter": 3000,
+    "price": 3000.0
+  },
+  {
+    "piCode": "54",
+    "piName": "4000원",
+    "pcdName": "대형폐기물",
+    "liter": 4000,
+    "price": 4000.0
+  },
+  {
+    "piCode": "55",
+    "piName": "5000원",
+    "pcdName": "대형폐기물",
+    "liter": 5000,
+    "price": 5000.0
+  },
+  {
+    "piCode": "56",
+    "piName": "7000원",
+    "pcdName": "대형폐기물",
+    "liter": 7000,
+    "price": 7000.0
+  },
+  {
+    "piCode": "57",
+    "piName": "9000원",
+    "pcdName": "대형폐기물",
+    "liter": 9000,
+    "price": 9000.0
+  },
+  {
+    "piCode": "58",
+    "piName": "11000원",
+    "pcdName": "대형폐기물",
+    "liter": 11000,
+    "price": 11000.0
+  },
+  {
+    "piCode": "59",
+    "piName": "16000원",
+    "pcdName": "대형폐기물",
+    "liter": 16000,
+    "price": 16000.0
+  }
+]
