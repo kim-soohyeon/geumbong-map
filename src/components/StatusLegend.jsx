@@ -8,46 +8,67 @@ const LEGENDS = [
   { color: '#8B95A1', bg: '#F2F4F6', label: '확인 필요', desc: '3개월 이상 경과' },
 ]
 
-export default function StatusLegend() {
+function LegendPanel({ latestDate, onClose }) {
+  return (
+    <div className="bg-white rounded-2xl shadow-md p-4 w-56">
+      <div className="flex items-center justify-between mb-3">
+        <p className="text-[13px] font-semibold text-[#191F28]">입고 상태 안내</p>
+        {onClose && (
+          <button onClick={onClose} aria-label="닫기" className="md:hidden">
+            <X className="w-4 h-4 text-[#8B95A1]" />
+          </button>
+        )}
+      </div>
+      <ul className="flex flex-col gap-2">
+        {LEGENDS.map((l) => (
+          <li key={l.label} className="flex items-center gap-2">
+            <span
+              className="w-3 h-3 rounded-full shrink-0"
+              style={{ background: l.color, border: '2px solid white', boxShadow: '0 1px 3px rgba(0,0,0,.2)' }}
+            />
+            <span
+              className="text-[12px] font-medium px-1.5 py-0.5 rounded-md"
+              style={{ color: l.color, background: l.bg }}
+            >
+              {l.label}
+            </span>
+            <span className="text-[12px] text-[#8B95A1]">{l.desc}</span>
+          </li>
+        ))}
+      </ul>
+      {latestDate && (
+        <p className="text-[11px] text-[#8B95A1] mt-3 pt-3 border-t border-[#F2F4F6]">
+          {latestDate}
+        </p>
+      )}
+    </div>
+  )
+}
+
+export default function StatusLegend({ latestDate }) {
   const [open, setOpen] = useState(false)
 
   return (
     <div className="absolute bottom-6 left-4 z-10">
-      {open ? (
-        <div className="bg-white rounded-2xl shadow-md p-4 w-56">
-          <div className="flex items-center justify-between mb-3">
-            <span className="text-[13px] font-semibold text-[#191F28]">입고 상태 안내</span>
-            <button onClick={() => setOpen(false)} aria-label="닫기">
-              <X className="w-4 h-4 text-[#8B95A1]" />
+      {/* 모바일: 토글 */}
+      <div className="md:hidden">
+        {open
+          ? <LegendPanel latestDate={latestDate} onClose={() => setOpen(false)} />
+          : (
+            <button
+              onClick={() => setOpen(true)}
+              className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center"
+              aria-label="입고 상태 안내"
+            >
+              <HelpCircle className="w-5 h-5 text-[#4E5968]" />
             </button>
-          </div>
-          <ul className="flex flex-col gap-2">
-            {LEGENDS.map((l) => (
-              <li key={l.label} className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 rounded-full shrink-0"
-                  style={{ background: l.color, border: '2px solid white', boxShadow: '0 1px 3px rgba(0,0,0,.2)' }}
-                />
-                <span
-                  className="text-[12px] font-medium px-1.5 py-0.5 rounded-md"
-                  style={{ color: l.color, background: l.bg }}
-                >
-                  {l.label}
-                </span>
-                <span className="text-[12px] text-[#8B95A1]">{l.desc}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <button
-          onClick={() => setOpen(true)}
-          className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center"
-          aria-label="입고 상태 안내"
-        >
-          <HelpCircle className="w-5 h-5 text-[#4E5968]" />
-        </button>
-      )}
+          )
+        }
+      </div>
+      {/* 데스크톱: 항상 표시 */}
+      <div className="hidden md:block">
+        <LegendPanel latestDate={latestDate} />
+      </div>
     </div>
   )
 }
