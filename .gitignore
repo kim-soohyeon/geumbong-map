@@ -5,6 +5,9 @@ build
 .idea
 .omc
 
-# È¯°æº¯¼ö (API Å° Æ÷ÇÔ - Àý´ë Ä¿¹Ô ±ÝÁö)
+# È¯ï¿½æº¯ï¿½ï¿½ (API Å° ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 .env.local
 .env.*.local
+.claude/settings.local.json
+.vercel
+.env*.local
