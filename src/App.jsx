@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { useKakaoMap } from './hooks/useKakaoMap'
 import { useStores } from './hooks/useStores'
 import Map from './components/Map'
@@ -14,9 +14,18 @@ export default function App() {
   const [radius, setRadius] = useState(0.4)
   const [piCode, setPiCode] = useState('')
   const [selected, setSelected] = useState(null)
+  const [markerPos, setMarkerPos] = useState(null)
 
   const { isLoaded } = useKakaoMap()
   const { stores, loading } = useStores(center, radius, piCode)
+
+  const latestDate = useMemo(() => {
+    let max = 0
+    stores.forEach((s) => s.pbios?.forEach((p) => { if (p.regDttm > max) max = p.regDttm }))
+    if (!max) return null
+    const d = new Date(max)
+    return `${d.getMonth() + 1}월 ${d.getDate()}일 데이터 기준`
+  }, [stores])
 
   return (
     <div className="relative w-full overflow-hidden" style={{ height: '100dvh' }}>
@@ -31,8 +40,15 @@ export default function App() {
       {isLoaded ? (
         <Map
           center={center}
+          radius={radius}
           stores={stores}
-          onMarkerClick={setSelected}
+          onMarkerClick={(store, pos) => {
+            if (selected?.comName === store.comName) {
+              setSelected(null); setMarkerPos(null)
+            } else {
+              setSelected(store); setMarkerPos(pos)
+            }
+          }}
           isMapLoaded={isLoaded}
         />
       ) : (
@@ -49,14 +65,14 @@ export default function App() {
         </div>
       )}
 
-      <StatusLegend />
+      <StatusLegend latestDate={latestDate} />
 
       <div className="md:hidden">
         <BottomSheet store={selected} onClose={() => setSelected(null)} />
       </div>
 
       <div className="hidden md:block">
-        <InfoWindow store={selected} onClose={() => setSelected(null)} />
+        <InfoWindow store={selected} position={markerPos} onClose={() => { setSelected(null); setMarkerPos(null) }} />
       </div>
     </div>
   )
