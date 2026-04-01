@@ -44,11 +44,12 @@ export default function SearchBar({ radius, piCode, onSearch, onRadiusChange, on
   return (
     <div className="absolute top-4 left-0 right-0 z-10 px-4">
       <form onSubmit={handleSearch} className="bg-white rounded-2xl shadow-md p-3 flex flex-col gap-2">
+        <p className="text-[13px] font-semibold text-[#191F28] px-1">서울특별시 금천구 종량제봉투 맵</p>
         <div className="flex items-center gap-2 bg-[#F2F4F6] rounded-xl px-3 py-2">
           <MapPin className="w-4 h-4 text-[#8B95A1] shrink-0" />
           <input
             type="text"
-            placeholder="주소를 입력하세요"
+            placeholder="금천구 도로명 주소를 입력하세요."
             value={query}
             onChange={(e) => { setQuery(e.target.value); setNotFound(false) }}
             className="flex-1 bg-transparent text-[15px] text-[#191F28] placeholder-[#8B95A1] outline-none"
