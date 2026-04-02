@@ -17,8 +17,6 @@ const TrashBagSVG = ({ color }) => (
     <path d="M14 15 Q20 18 26 15 L24 17 Q20 20 16 17 Z" fill="rgba(0,0,0,0.15)"/>
     <path d="M12 21 Q10 26 12 32" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
     <path d="M28 21 Q30 26 28 32" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-    <circle cx="20" cy="26" r="5" fill="rgba(255,255,255,0.3)"/>
-    <text x="20" y="28" fontSize="5" fontWeight="900" fill="#FFFFFF" textAnchor="middle" fontFamily="sans-serif">20L</text>
   </svg>
 )
 
@@ -61,20 +59,21 @@ export default function StatusLegend({ latestDate }) {
 
   return (
     <div className="absolute bottom-6 left-4 z-10">
-      {/* 모바일: 토글 */}
-      <div className="md:hidden">
-        {open
-          ? <LegendPanel latestDate={latestDate} onClose={() => setOpen(false)} />
-          : (
-            <button
-              onClick={() => setOpen(true)}
-              className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center"
-              aria-label="입고 상태 안내"
-            >
-              <HelpCircle className="w-5 h-5 text-[#4E5968]" />
-            </button>
-          )
-        }
+      {/* 모바일: 패널은 absolute로 버튼 위에 띄움, 버튼 위치 불변 */}
+      <div className="md:hidden relative">
+        {open && (
+          <div className="absolute bottom-full left-0 mb-2">
+            <LegendPanel latestDate={latestDate} onClose={() => setOpen(false)} />
+          </div>
+        )}
+        <button
+          onClick={(e) => { setOpen((v) => !v); e.currentTarget.blur() }}
+          className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center"
+          aria-label="입고 상태 안내"
+          aria-expanded={open}
+        >
+          <HelpCircle className="w-5 h-5 text-[#4E5968]" />
+        </button>
       </div>
       {/* 데스크톱: 항상 표시 */}
       <div className="hidden md:block">
