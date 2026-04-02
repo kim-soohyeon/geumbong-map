@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 import { getStatusColor } from '../utils/statusColor'
 
 function createMarkerImage(color) {
@@ -17,13 +17,8 @@ function createMarkerImage(color) {
     <!-- 묶인 주름(매듭) 디테일 -->
     <path d="M14 15 Q20 18 26 15 L24 17 Q20 20 16 17 Z" fill="rgba(0,0,0,0.15)"/>
 
-    <!-- 몸통 세로 주름선 (비닐 입체감) -->
     <path d="M12 21 Q10 26 12 32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
     <path d="M28 21 Q30 26 28 32" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-
-    <!-- 종량제 봉투 시그니처 로고 '20L' -->
-    <circle cx="20" cy="26" r="5" fill="rgba(255,255,255,0.2)"/>
-    <text x="20" y="28" font-size="5" font-weight="900" fill="#FFFFFF" text-anchor="middle" font-family="sans-serif">20L</text>
   </svg>`
   return new window.kakao.maps.MarkerImage(
     `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
@@ -32,11 +27,27 @@ function createMarkerImage(color) {
   )
 }
 
-export default function Map({ center, radius, stores, onMarkerClick, isMapLoaded }) {
+function createUserLocationImage() {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="6" fill="#3182F6" opacity="0.25">
+      <animate attributeName="r" values="6;12;6" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="12" cy="12" r="6" fill="#3182F6" stroke="white" stroke-width="2.5"/>
+  </svg>`
+  return new window.kakao.maps.MarkerImage(
+    `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`,
+    new window.kakao.maps.Size(24, 24),
+    { offset: new window.kakao.maps.Point(12, 12) }
+  )
+}
+
+const Map = forwardRef(function Map({ center, radius, stores, onMarkerClick, isMapLoaded, userLocation }, ref) {
   const containerRef = useRef(null)
   const mapRef = useRef(null)
   const markersRef = useRef([])
   const circleRef = useRef(null)
+  const userMarkerRef = useRef(null)
 
   // 지도 초기화
   useEffect(() => {
@@ -47,6 +58,24 @@ export default function Map({ center, radius, stores, onMarkerClick, isMapLoaded
       level: 4,
     })
   }, [isMapLoaded])
+
+  useImperativeHandle(ref, () => ({
+    panTo: (lat, lng) => {
+      mapRef.current?.panTo(new window.kakao.maps.LatLng(lat, lng))
+    }
+  }))
+
+  // 내 위치 마커
+  useEffect(() => {
+    if (!mapRef.current || !userLocation) return
+    if (userMarkerRef.current) userMarkerRef.current.setMap(null)
+    userMarkerRef.current = new window.kakao.maps.Marker({
+      position: new window.kakao.maps.LatLng(userLocation.lat, userLocation.lng),
+      image: createUserLocationImage(),
+      map: mapRef.current,
+      zIndex: 5,
+    })
+  }, [userLocation])
 
   // 중심점 이동
   useEffect(() => {
@@ -90,7 +119,19 @@ export default function Map({ center, radius, stores, onMarkerClick, isMapLoaded
       })
       kakao.maps.event.addListener(marker, 'click', () => {
         const proj = mapRef.current.getProjection()
-        const point = proj.containerPointFromCoords(new kakao.maps.LatLng(store.latitude, store.longitude))
+        const markerLatLng = new kakao.maps.LatLng(store.latitude, store.longitude)
+        const point = proj.containerPointFromCoords(markerLatLng)
+
+        // 모바일: BottomSheet(최대 65dvh)가 가리지 않도록 마커를 화면 상단 30% 영역에 위치시킴
+        // 데스크톱: InfoWindow가 마커 옆에 뜨므로 패닝 불필요
+        if (window.innerWidth < 768) {
+          const offsetY = window.innerHeight * 0.325
+          const panTarget = proj.coordsFromContainerPoint(
+            new window.kakao.maps.Point(point.x, point.y + offsetY)
+          )
+          mapRef.current.panTo(panTarget)
+        }
+
         onMarkerClick(store, { x: point.x, y: point.y })
       })
       markersRef.current.push(marker)
@@ -102,4 +143,6 @@ export default function Map({ center, radius, stores, onMarkerClick, isMapLoaded
       <div ref={containerRef} className="w-full h-full" />
     </div>
   )
-}
+})
+
+export default Map
