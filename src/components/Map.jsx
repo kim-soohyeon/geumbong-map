@@ -122,16 +122,6 @@ const Map = forwardRef(function Map({ center, radius, stores, onMarkerClick, isM
         const markerLatLng = new kakao.maps.LatLng(store.latitude, store.longitude)
         const point = proj.containerPointFromCoords(markerLatLng)
 
-        // 모바일: BottomSheet(최대 65dvh)가 가리지 않도록 마커를 화면 상단 30% 영역에 위치시킴
-        // 데스크톱: InfoWindow가 마커 옆에 뜨므로 패닝 불필요
-        if (window.innerWidth < 768) {
-          const offsetY = window.innerHeight * 0.325
-          const panTarget = proj.coordsFromContainerPoint(
-            new window.kakao.maps.Point(point.x, point.y + offsetY)
-          )
-          mapRef.current.panTo(panTarget)
-        }
-
         onMarkerClick(store, { x: point.x, y: point.y })
       })
       markersRef.current.push(marker)
