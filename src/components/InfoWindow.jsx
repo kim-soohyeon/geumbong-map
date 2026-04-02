@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
 import StoreDetail from './StoreDetail'
 
@@ -6,10 +7,16 @@ const PANEL_MAX_H = 480
 const MARGIN = 12
 
 export default function InfoWindow({ store, position, onClose }) {
-  if (!store || !position) return null
+  const [vw, setVw] = useState(window.innerWidth)
+  const [vh, setVh] = useState(window.innerHeight)
 
-  const vw = window.innerWidth
-  const vh = window.innerHeight
+  useEffect(() => {
+    const handler = () => { setVw(window.innerWidth); setVh(window.innerHeight) }
+    window.addEventListener('resize', handler)
+    return () => window.removeEventListener('resize', handler)
+  }, [])
+
+  if (!store || !position) return null
 
   // 마커 오른쪽 우선, 공간 부족 시 왼쪽
   let left = position.x + 16
