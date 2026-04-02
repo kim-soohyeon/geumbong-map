@@ -30,6 +30,9 @@ Vercel Serverless Function
 - **Deployment**: Vercel
 - **API**: 금천구 종량제 봉투 관리 시스템 API, Kakao Local API
 
+## 📊 데이터 출처
+- **종량제봉투 및 납부필증 판매소 위치검색시스템**: [https://geumcheon.jmtwaste.kr/jmfwaste/webBongtuSeller](https://geumcheon.jmtwaste.kr/jmfwaste/webBongtuSeller)
+
 ## 🚀 로컬 실행
 
 ```bash
