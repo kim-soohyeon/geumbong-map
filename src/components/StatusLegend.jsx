@@ -67,7 +67,8 @@ export default function StatusLegend({ latestDate }) {
           </div>
         )}
         <button
-          onClick={(e) => { setOpen((v) => !v); e.currentTarget.blur() }}
+          onPointerDown={(e) => e.preventDefault()}
+          onClick={() => setOpen((v) => !v)}
           className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center"
           aria-label="입고 상태 안내"
           aria-expanded={open}
