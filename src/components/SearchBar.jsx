@@ -12,8 +12,6 @@ const TrashBagSVG = ({ color, className = "" }) => (
     <path d="M14 15 Q20 18 26 15 L24 17 Q20 20 16 17 Z" fill="rgba(0,0,0,0.15)"/>
     <path d="M12 21 Q10 26 12 32" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
     <path d="M28 21 Q30 26 28 32" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-    <circle cx="20" cy="26" r="5" fill="rgba(255,255,255,0.3)"/>
-    <text x="20" y="28" fontSize="5" fontWeight="900" fill="#FFFFFF" textAnchor="middle" fontFamily="sans-serif">20L</text>
   </svg>
 )
 
