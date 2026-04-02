@@ -26,7 +26,7 @@ export default function StoreDetail({ store }) {
       {store.telNum && (
         <a
           href={`tel:${store.telNum}`}
-          className="flex items-center gap-2 text-[14px] text-[#3182F6] font-medium"
+          className="flex items-center justify-center gap-2 text-[14px] text-[#3182F6] font-semibold border border-[#3182F6] rounded-xl py-2.5 px-4 hover:bg-[#E8F3FF] transition-colors"
         >
           <Phone className="w-4 h-4" />
           {store.telNum}
@@ -37,7 +37,7 @@ export default function StoreDetail({ store }) {
         <p className="text-[13px] font-semibold text-[#191F28] mb-2">최근 입고 현황</p>
         {sorted.length > 0 ? (
           <div className="flex flex-col">
-            {sorted.slice(0, 8).map((item, i) => (
+            {sorted.map((item, i) => (
               <div
                 key={i}
                 className="flex items-center justify-between text-[13px] py-2 border-b border-[#F2F4F6] last:border-0"
@@ -55,7 +55,7 @@ export default function StoreDetail({ store }) {
             ))}
           </div>
         ) : (
-          <p className="text-[13px] text-[#8B95A1]">최근 입고 내역이 없습니다.</p>
+          <p className="text-[13px] text-[#8B95A1]">입고 기록이 없어요. 방문 전 전화해보세요 📞</p>
         )}
       </div>
     </div>
