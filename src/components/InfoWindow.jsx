@@ -42,7 +42,7 @@ export default function InfoWindow({ store, position, onClose }) {
         className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-[#F2F4F6]"
         aria-label="닫기"
       >
-        <X className="w-4 h-4 text-[#4E5968]" />
+        <X className="w-4 h-4 text-[#4E5968]" aria-hidden="true" />
       </button>
       <StoreDetail store={store} />
     </div>

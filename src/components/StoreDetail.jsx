@@ -28,7 +28,7 @@ export default function StoreDetail({ store }) {
           href={`tel:${store.telNum}`}
           className="flex items-center justify-center gap-2 text-[14px] text-[#3182F6] font-semibold border border-[#3182F6] rounded-xl py-2.5 px-4 hover:bg-[#E8F3FF] transition-colors"
         >
-          <Phone className="w-4 h-4" />
+          <Phone className="w-4 h-4" aria-hidden="true" />
           {store.telNum}
         </a>
       )}

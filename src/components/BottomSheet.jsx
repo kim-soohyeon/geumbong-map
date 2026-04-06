@@ -54,7 +54,7 @@ export default function BottomSheet({ store, onClose }) {
           className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-[#F2F4F6]"
           aria-label="닫기"
         >
-          <X className="w-4 h-4 text-[#4E5968]" />
+          <X className="w-4 h-4 text-[#4E5968]" aria-hidden="true" />
         </button>
         <StoreDetail store={store} />
         <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white to-transparent pointer-events-none rounded-b-3xl" />

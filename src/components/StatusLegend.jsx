@@ -9,7 +9,7 @@ const LEGENDS = [
 ]
 
 const TrashBagSVG = ({ color }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40" className="shrink-0 drop-shadow-sm">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 40 40" className="shrink-0 drop-shadow-sm" aria-hidden="true">
     <ellipse cx="20" cy="35" rx="14" ry="2.5" fill="rgba(0,0,0,0.15)"/>
     <path d="M15 16 C10 8 13 4 16 4 C18 4 19 10 18 14" fill={color} stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M25 16 C30 8 27 4 24 4 C22 4 21 10 22 14" fill={color} stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -73,7 +73,7 @@ export default function StatusLegend({ latestDate }) {
           aria-label="입고 상태 안내"
           aria-expanded={open}
         >
-          <HelpCircle className="w-5 h-5 text-[#4E5968]" />
+          <HelpCircle className="w-5 h-5 text-[#4E5968]" aria-hidden="true" />
         </button>
       </div>
       {/* 데스크톱: 항상 표시 */}

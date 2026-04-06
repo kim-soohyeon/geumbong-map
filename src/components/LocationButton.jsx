@@ -40,9 +40,9 @@ export default function LocationButton({ onLocate }) {
         aria-label="내 위치로 이동"
       >
         {status === 'loading' ? (
-          <Loader2 className="w-5 h-5 text-[#3182F6] animate-spin" />
+          <Loader2 className="w-5 h-5 text-[#3182F6] animate-spin" aria-hidden="true" />
         ) : (
-          <LocateFixed className={`w-5 h-5 ${status === 'error' ? 'text-[#F04452]' : 'text-[#4E5968]'}`} />
+          <LocateFixed className={`w-5 h-5 ${status === 'error' ? 'text-[#F04452]' : 'text-[#4E5968]'}`} aria-hidden="true" />
         )}
       </button>
     </div>

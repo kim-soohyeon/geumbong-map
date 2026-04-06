@@ -65,7 +65,7 @@ export default function App() {
       )}
 
       {loading && (
-        <div className="absolute top-[8.5rem] left-1/2 -translate-x-1/2 z-10 pointer-events-none">
+        <div className="absolute top-[8.5rem] left-1/2 -translate-x-1/2 z-10 pointer-events-none" aria-live="polite" aria-atomic="true">
           <div className="bg-white rounded-full px-4 py-2 shadow-md text-[13px] text-[#4E5968]">
             봉투 찾는 중...
           </div>
@@ -73,9 +73,9 @@ export default function App() {
       )}
 
       {!loading && stores.length === 0 && isLoaded && (
-        <div className="absolute top-[8.5rem] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3">
+        <div className="absolute top-[8.5rem] left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3" aria-live="polite" aria-atomic="true">
           <div className="relative animate-[bounce_2.5s_infinite]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 40 40" className="drop-shadow-lg opacity-90">
+            <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 40 40" className="drop-shadow-lg opacity-90" aria-hidden="true">
               <ellipse cx="20" cy="35" rx="14" ry="2.5" fill="rgba(0,0,0,0.1)"/>
               <path d="M15 16 C10 8 13 4 16 4 C18 4 19 10 18 14" fill="#8B95A1" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M25 16 C30 8 27 4 24 4 C22 4 21 10 22 14" fill="#8B95A1" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

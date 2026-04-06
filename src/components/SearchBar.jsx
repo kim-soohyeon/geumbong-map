@@ -4,7 +4,7 @@ import allProducts from '../data/products.json'
 import { getStatusColor } from '../utils/statusColor'
 
 const TrashBagSVG = ({ color, className = "" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 40 40" className={`shrink-0 drop-shadow-sm ${className}`}>
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 40 40" className={`shrink-0 drop-shadow-sm ${className}`} aria-hidden="true">
     <ellipse cx="20" cy="35" rx="14" ry="2.5" fill="rgba(0,0,0,0.15)"/>
     <path d="M15 16 C10 8 13 4 16 4 C18 4 19 10 18 14" fill={color} stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     <path d="M25 16 C30 8 27 4 24 4 C22 4 21 10 22 14" fill={color} stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -68,7 +68,7 @@ export default function SearchBar({ radius, piCode, onSearch, onRadiusChange, on
         </div>
         <label htmlFor="address-input" className="sr-only">주소 검색</label>
         <div className="flex items-center gap-2 bg-[#F2F4F6] rounded-xl px-3 py-2">
-          <MapPin className="w-4 h-4 text-[#8B95A1] shrink-0" />
+          <MapPin className="w-4 h-4 text-[#8B95A1] shrink-0" aria-hidden="true" />
           <input
             id="address-input"
             type="text"
@@ -78,7 +78,7 @@ export default function SearchBar({ radius, piCode, onSearch, onRadiusChange, on
             className="flex-1 bg-transparent text-[15px] text-[#191F28] placeholder-[#8B95A1] outline-none"
           />
           <button type="submit" disabled={searching} aria-label="검색">
-            <Search className={`w-4 h-4 ${searching ? 'text-[#8B95A1]' : 'text-[#3182F6]'}`} />
+            <Search className={`w-4 h-4 ${searching ? 'text-[#8B95A1]' : 'text-[#3182F6]'}`} aria-hidden="true" />
           </button>
         </div>
         {notFound && (
@@ -112,7 +112,7 @@ export default function SearchBar({ radius, piCode, onSearch, onRadiusChange, on
                 <option key={o.value} value={o.value}>{o.label}</option>
               ))}
             </select>
-            <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#8B95A1] pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
+            <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#8B95A1] pointer-events-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
             </svg>
           </div>
